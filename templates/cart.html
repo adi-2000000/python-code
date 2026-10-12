@@ -1,0 +1,374 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | ShopEasy</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .navbar {
+            background: #ffffff;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e8ecf3;
+            box-shadow: 0 3px 12px rgba(20, 35, 70, 0.04);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            color: #2563eb;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .shop-button {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 11px 17px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 45px auto;
+            padding: 0 22px;
+        }
+
+        .page-heading {
+            margin-bottom: 28px;
+        }
+
+        .page-heading h1 {
+            font-size: 34px;
+            margin: 0 0 10px;
+            letter-spacing: -1px;
+        }
+
+        .page-heading p {
+            color: #6b7280;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        .cart-panel,
+        .cart-summary {
+            background: #ffffff;
+            border: 1px solid #e7ebf2;
+            border-radius: 17px;
+            padding: 25px;
+            box-shadow: 0 8px 28px rgba(20, 35, 70, 0.04);
+        }
+
+        .panel-heading {
+            font-size: 19px;
+            font-weight: 700;
+            margin: 0 0 20px;
+        }
+
+        #cartMessage {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .cart-summary h2 {
+            margin: 0 0 22px;
+            font-size: 21px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 18px 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .summary-row strong {
+            color: #172033;
+        }
+
+        .summary-total {
+            border-top: 1px solid #e8ecf3;
+            padding-top: 20px;
+            margin-top: 22px;
+            font-size: 17px;
+            color: #172033;
+        }
+
+        .summary-total strong {
+            color: #2563eb;
+            font-size: 23px;
+        }
+
+        .small-note {
+            color: #7b8495;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .btn,
+        .secondary-button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 18px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            box-shadow: 0 5px 12px rgba(37, 99, 235, 0.18);
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #dc2626;
+            border: 1px solid #e5e7eb;
+            margin-top: 10px;
+        }
+
+        .secondary-button:hover {
+            background: #fef2f2;
+        }
+
+        .continue-link {
+            display: block;
+            text-align: center;
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .secure-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .benefit {
+            padding: 17px;
+            background: #ffffff;
+            border: 1px solid #e7ebf2;
+            border-radius: 12px;
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .benefit strong {
+            display: block;
+            color: #172033;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            color: #8a93a3;
+            font-size: 12px;
+            padding: 30px 15px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 760px) {
+            .navbar {
+                padding: 16px 5%;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .container {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+
+            .page-heading h1 {
+                font-size: 28px;
+            }
+
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-panel,
+            .cart-summary {
+                padding: 19px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="logo" href="/">ShopEasy.</a>
+
+        <nav class="nav-right">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/">Continue Shopping</a>
+            <a class="shop-button" href="/cart">🛒 My Cart</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-heading">
+            <h1>Your Shopping Cart 🛍️</h1>
+            <p>Review your selected products before proceeding to checkout.</p>
+        </div>
+
+        <div class="cart-layout">
+            <section class="cart-panel">
+                <h2 class="panel-heading">Cart Items</h2>
+
+                <p id="cartMessage">Loading your cart...</p>
+
+                <div id="cartItems" class="cart-items"></div>
+            </section>
+
+            <section id="cartSummary" class="cart-summary" hidden>
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <strong id="cartSubtotal">₹0.00</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <strong>At checkout</strong>
+                </div>
+
+                <div class="summary-row summary-total">
+                    <span>Estimated total</span>
+                    <strong id="summaryTotal">₹0.00</strong>
+                </div>
+
+                <p class="small-note">
+                    Final payable amount and delivery charges will be
+                    confirmed at checkout.
+                </p>
+
+                <a href="/checkout" class="btn">
+                    Proceed to Checkout →
+                </a>
+
+                <a href="/" class="continue-link">
+                    ← Continue Shopping
+                </a>
+
+                <button id="clearCart" class="secondary-button" type="button">
+                    Clear Cart
+                </button>
+
+                <p class="secure-note">
+                    🔒 Secure checkout<br>
+                    Your order details will be confirmed before payment.
+                </p>
+            </section>
+        </div>
+
+        <div class="benefits">
+            <div class="benefit">
+                <strong>🚚 Convenient Delivery</strong>
+                Delivery details are provided at checkout.
+            </div>
+
+            <div class="benefit">
+                <strong>💳 Flexible Payments</strong>
+                Choose an available payment method at checkout.
+            </div>
+
+            <div class="benefit">
+                <strong>🛍️ Easy Shopping</strong>
+                Continue browsing and add more products anytime.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 ShopEasy. All rights reserved.
+    </footer>
+
+    <script src="/static/js/cart.js"></script>
+</body>
+</html>

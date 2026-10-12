@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-commerce Website</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/auth.js" defer></script>
+    
+</head>
+<body>
+
+    <div class="user-section">
+    <span id="userInfo">Welcome, Guest</span>
+
+    <a href="/login" id="loginLink">Login</a>
+    <a href="/register" id="registerLink">Register</a>
+
+    <button
+        id="logoutButton"
+        type="button"
+        onclick="logoutUser()"
+        style="display: none;"
+    >
+        Logout
+    </button>
+</div>
+    <header class="navbar">
+        <a class="logo" href="/">ShopEasy</a>
+
+        <input
+            id="searchInput"
+            type="search"
+            placeholder="Search products..."
+            aria-label="Search products"
+        >
+
+        <button id="cartButton" class="cart-button">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </button>
+    </header>
+
+    <section class="hero">
+        <div>
+            <p class="eyebrow">WELCOME TO SHOPEASY</p>
+            <h1>Find Your Everyday Essentials</h1>
+            <p>Discover products at great prices.</p>
+            <a class="shop-button" href="#products">Shop Now</a>
+        </div>
+    </section>
+
+
+
+    <section class="container" id="recommendations">
+    <div class="section-heading">
+        <div>
+            <h2>Recommended Products</h2>
+            <p>Products related to our featured products, using Machine Learning</p>
+        </div>
+    </div>
+
+    <p id="recommendationStatus">Loading recommendations...</p>
+    <div id="recommendedProductList" class="product-grid"></div>
+</section>
+
+    <main class="container" id="products">
+        <div class="section-heading">
+            <div>
+                <h2>Our Products</h2>
+                <p>Products loaded from your MySQL database</p>
+            </div>
+        </div>
+
+        <p id="statusMessage">Loading products...</p>
+        <div id="productList" class="product-grid"></div>
+    </main>
+
+    <footer>
+        <p>© 2026 ShopEasy. Built with Python, FastAPI and MySQL.</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
